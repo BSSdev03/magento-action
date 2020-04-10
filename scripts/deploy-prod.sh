@@ -14,6 +14,7 @@ ssh-add ~/.ssh/id_rsa
 echo "$SSH_CONFIG" > /etc/ssh/ssh_config && chmod 600 /etc/ssh/ssh_config
 
 echo "deploy to $HOST_DEPLOY_PATH"
+echo "start deploy"
 echo "Move sites updated code to staging site"
 rsync -e "ssh -o StrictHostKeyChecking=no -p 22" -avz ./ $USERNAME@$ADDRESS:$HOST_DEPLOY_PATH
 ssh -o StrictHostKeyChecking=no -p 22 $USERNAME@$ADDRESS 'bash /home/cloudpanel/htdocs/www.glassesgallery.com/pro_deploy.sh'
