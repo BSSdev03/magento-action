@@ -15,7 +15,8 @@ echo "$SSH_CONFIG" > /etc/ssh/ssh_config && chmod 600 /etc/ssh/ssh_config
 
 composer update
 composer install
-php /home/cloudpanel/htdocs/www.glassesgallery.com/bin/magento setup:static-content:deploy en_US fr_Fr zh_Hant_TW en_CA  -f
+php bin/magento setup:upgrade
+php bin/magento setup:static-content:deploy en_US fr_Fr zh_Hant_TW en_CA  -f
 
 rm -f app/etc/env.php
 
