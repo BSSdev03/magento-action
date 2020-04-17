@@ -17,4 +17,4 @@ echo "deploy to $HOST_DEPLOY_PATH"
 echo "start deploy"
 echo "Move sites updated code to staging site"
 rsync -e "ssh -o StrictHostKeyChecking=no -p 22" -avz ./ $USERNAME@$ADDRESS:$HOST_DEPLOY_PATH
-ssh -o StrictHostKeyChecking=no -p 22 $USERNAME@$ADDRESS 'bash /home/cloudpanel/htdocs/www.glassesgallery.com/pro_deploy.sh'
+ssh -o StrictHostKeyChecking=no -p 22 $USERNAME@$ADDRESS 'bash /home/cloudpanel/htdocs/www.glassesgallery.com/prod_deploy.sh'
