@@ -17,9 +17,9 @@ touch auth.json
 
 echo "$COMPOSER_AUTH" >> auth.json && chmod 600 auth.json
 
-composer self-update --stable
-composer update
-composer install
+/usr/local/bin/composer update
+/usr/local/bin/composer install
+
 php bin/magento setup:upgrade
 php bin/magento setup:static-content:deploy en_US fr_Fr zh_Hant_TW en_CA  -f
 
