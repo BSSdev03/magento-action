@@ -16,9 +16,24 @@ chmod +x bin/magento
 
 mysqladmin -h mysql -u root -pmagento status
 
-bin/magento setup:install --admin-firstname="local" --admin-lastname="local" --admin-email="local@local.com" --admin-user="local" --admin-password="local123" --base-url="http://magento.build/" --backend-frontname="admin" --db-host="mysql" --db-name="magento" --db-user="root" --db-password="magento" --use-secure=0 --use-rewrites=1 --use-secure-admin=0 --session-save="db" --currency="EUR" --language="en_US" --timezone="Europe/Rome" --cleanup-database --skip-db-validation
+bin/magento setup:install \
+--base-url=http://localhost/magento2ee \
+--db-host=mysql \
+--db-name=magento \
+--db-user=root \
+--db-password=magento \
+--admin-firstname=admin \
+--admin-lastname=admin \
+--admin-email=admin@admin.com \
+--admin-user=admin \
+--admin-password=admin123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--use-rewrites=1
 
 #run necessary magento command
+php bin/magento setup:upgrade
 php bin/magento setup:di:compile
 php bin/magento deploy:mode:set --skip-compilation production
 php bin/magento setup:static-content:deploy en_US fr_Fr zh_Hant_TW en_CA  -f
