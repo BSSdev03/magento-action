@@ -54,7 +54,7 @@ RUN apt-get -y update \
     /usr/share/doc \
     /usr/share/doc-base
 
-RUN curl -LO https://getcomposer.org/composer.phar \
+RUN curl -LO https://getcomposer.org/download/1.8.6/composer.phar \
     && chmod +x ./composer.phar \
     && mv ./composer.phar /usr/local/bin/composer
 
