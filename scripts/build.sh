@@ -4,29 +4,24 @@ set -e
 
 PROJECT_PATH="$(pwd)"
 
-cd $PROJECT_PATH/magento
+#Create Auth Json For Composer 
+touch auth.json
+echo "$COMPOSER_AUTH" >> auth.json && chmod 600 auth.json
 
-/usr/local/bin/composer install --no-dev --no-progress
+composer --version
+/usr/local/bin/composer update
+/usr/local/bin/composer install
+
 chmod +x bin/magento
 
 mysqladmin -h mysql -u root -pmagento status
 
-if [ $INPUT_ELASTICSUITE = 1 ]
-then
-  bin/magento setup:install --admin-firstname="local" --admin-lastname="local" --admin-email="local@local.com" --admin-user="local" --admin-password="local123" --base-url="http://magento.build/" --backend-frontname="admin" --db-host="mysql" --db-name="magento" --db-user="root" --db-password="magento" --use-secure=0 --use-rewrites=1 --use-secure-admin=0 --session-save="db" --currency="EUR" --language="en_US" --timezone="Europe/Rome" --cleanup-database --skip-db-validation --es-hosts="elasticsearch:9200" --es-user="" --es-pass=""
-else
-  bin/magento setup:install --admin-firstname="local" --admin-lastname="local" --admin-email="local@local.com" --admin-user="local" --admin-password="local123" --base-url="http://magento.build/" --backend-frontname="admin" --db-host="mysql" --db-name="magento" --db-user="root" --db-password="magento" --use-secure=0 --use-rewrites=1 --use-secure-admin=0 --session-save="db" --currency="EUR" --language="en_US" --timezone="Europe/Rome" --cleanup-database --skip-db-validation
-fi
+bin/magento setup:install --admin-firstname="local" --admin-lastname="local" --admin-email="local@local.com" --admin-user="local" --admin-password="local123" --base-url="http://magento.build/" --backend-frontname="admin" --db-host="mysql" --db-name="magento" --db-user="root" --db-password="magento" --use-secure=0 --use-rewrites=1 --use-secure-admin=0 --session-save="db" --currency="EUR" --language="en_US" --timezone="Europe/Rome" --cleanup-database --skip-db-validation
 
-#--key=magento \
-
-bin/magento setup:di:compile
-bin/magento deploy:mode:set --skip-compilation production
-
-bin/magento setup:static-content:deploy
-#bin/magento setup:static-content:deploy en_US  -a adminhtml
-#bin/magento setup:static-content:deploy fr_FR -f -s standard -a adminhtml
-#bin/magento setup:static-content:deploy fr_FR -f -s standard  -t Creativestyle/theme-creativeshop
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento deploy:mode:set --skip-compilation production
+php bin/magento setup:static-content:deploy en_US fr_Fr zh_Hant_TW en_CA  -f
 
 composer dump-autoload -o
 
