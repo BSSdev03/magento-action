@@ -16,7 +16,7 @@ echo "$SSH_CONFIG" > /etc/ssh/ssh_config && chmod 600 /etc/ssh/ssh_config
 touch auth.json
 
 echo "$COMPOSER_AUTH" >> auth.json && chmod 600 auth.json
-
+composer --version
 /usr/local/bin/composer update
 /usr/local/bin/composer install
 
