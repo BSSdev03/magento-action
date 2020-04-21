@@ -13,8 +13,8 @@ mysqladmin -h mysql -u root -pmagento status
 
 #check db magento exists
 echo "check db magento exist";
-if ! mysqladmin -h mysql -u root -e 'use magento'; then
- mysqladmin -h mysql -u root -pmagento -e 'create database magento';
+if ! mysql -u root -pmagento -e 'use magento'; then
+ mysql -u root -pmagento -e 'create database magento';
 fi
 
 composer --version
