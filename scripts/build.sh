@@ -8,13 +8,20 @@ PROJECT_PATH="$(pwd)"
 touch auth.json
 echo "$COMPOSER_AUTH" >> auth.json && chmod 600 auth.json
 
+
+mysqladmin -h mysql -u root -pmagento status
+
+#check db magento exists
+echo "check db magento exist";
+if ! mysqladmin -h mysql -u root -e 'use magento'; then
+ mysqladmin -h mysql -u root -pmagento -e 'create database magento';
+fi
+
 composer --version
 /usr/local/bin/composer update
 /usr/local/bin/composer install --no-dev --no-progress
 
 chmod +x bin/magento
-
-mysqladmin -h mysql -u root -pmagento status
 
 rm -f app/etc/env.php
 
