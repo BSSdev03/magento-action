@@ -22,11 +22,13 @@ composer --version
 
 chmod +x bin/magento
 
-rm -f ./app/etc/env.php
+
 
 mkdir samplemage
 composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition samplemage
 samplemage/bin/magento setup:install --admin-firstname="local" --admin-lastname="local" --admin-email="local@local.com" --admin-user="local" --admin-password="local123" --base-url="http://magento.build/" --backend-frontname="admin" --db-host="mysql" --db-name="magento2" --db-user="root" --db-password="magento" --use-secure=0 --use-rewrites=1 --use-secure-admin=0 --session-save="db" --currency="EUR" --language="en_US" --timezone="Europe/Rome" --cleanup-database --skip-db-validation
+mv samplemage/app/etc/env.php app/etc/
+mv samplemage/app/etc/config.php app/etc/
 
 #run necessary magento command
 php bin/magento setup:upgrade
