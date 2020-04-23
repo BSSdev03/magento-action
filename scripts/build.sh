@@ -35,7 +35,7 @@ composer --version
 php bin/magento setup:upgrade
 php bin/magento setup:di:compile
 php bin/magento deploy:mode:set --skip-compilation production
-php bin/magento setup:static-content:deploy en_US fr_Fr zh_Hant_TW en_CA  -f
+php bin/magento setup:static-content:deploy en_US fr_CA fr_FR zh_Hant_TW en_CA  -f
 
 composer dump-autoload -o
 
