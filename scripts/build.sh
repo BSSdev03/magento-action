@@ -40,3 +40,4 @@ php bin/magento setup:static-content:deploy en_US fr_CA fr_FR zh_Hant_TW en_CA  
 composer dump-autoload -o
 
 rm app/etc/env.php
+rm -rf samplemage
