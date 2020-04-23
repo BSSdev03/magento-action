@@ -20,5 +20,5 @@ rm -f auth.json
 
 echo "deploy to $HOST_DEPLOY_PATH"
 echo "Move sites updated code to staging site"
-rsync -e "ssh -o StrictHostKeyChecking=no -p 22" -avz --exclude 'samplemage' ./ $USERNAME@$ADDRESS:$HOST_DEPLOY_PATH
+rsync -e "ssh -o StrictHostKeyChecking=no -p 22" -avz ./ $USERNAME@$ADDRESS:$HOST_DEPLOY_PATH
 ssh -o StrictHostKeyChecking=no -p 22 $USERNAME@$ADDRESS 'bash /home/cloudpanel/htdocs/test.glassesgallery.com/staging_deploy.sh'
