@@ -37,7 +37,7 @@ php bin/magento module:disable -f Amazon_Login Amazon_Payment Amazon_Core Magent
 #run necessary magento command
 php bin/magento setup:upgrade
 php bin/magento setup:di:compile
-php bin/magento deploy:mode:set --skip-compilation production
+#php bin/magento deploy:mode:set --skip-compilation production
 php bin/magento setup:static-content:deploy --theme Magento/backend --theme K2Digital/GlassesGalleryChild en_US fr_CA fr_FR zh_Hant_TW en_CA  -f
 
 composer dump-autoload -o
